@@ -9,6 +9,7 @@ public class ObjectPooling : MonoBehaviour
     [SerializeField] private GameObject _prefab1;
     [SerializeField] private GameObject _prefab2;
     [SerializeField] private GameObject _prefab3;
+    private int getRandomItem;
 
     public List<GameObject> ListOfObjects;
 
@@ -43,9 +44,10 @@ public class ObjectPooling : MonoBehaviour
     {
         for (int i = 0; i < ListOfObjects.Count; i++)
         {
-            if (!ListOfObjects[i].activeInHierarchy)
+            getRandomItem = Random.Range(0, ListOfObjects.Count);
+            if (!ListOfObjects[getRandomItem].activeInHierarchy)
             {
-                return ListOfObjects[i];
+                return ListOfObjects[getRandomItem];
             }
         }
         return null;
