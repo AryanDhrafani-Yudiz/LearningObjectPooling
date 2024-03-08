@@ -2,26 +2,25 @@ using UnityEngine;
 
 public class PlayerPools : MonoBehaviour
 {
+    public static PlayerPools Inst;
+
     [SerializeField] private Transform prefab1Posi;
     [SerializeField] private Transform prefab2Posi;
     [SerializeField] private Transform prefab3Posi;
     private float xOffset;
     private float currPosition;
 
+    private void Awake()
+    {
+        Inst = this;
+    }
     private void Start()
     {
         SpawnStartingBuilding();
         SpawnStartingBuilding();
         SpawnStartingBuilding();
         currPosition = prefab3Posi.position.x;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnBuilding(FindNextPosition());
-        }
+        SpawnBuilding(FindNextPosition());
     }
     public void SpawnStartingBuilding()
     {
@@ -53,7 +52,7 @@ public class PlayerPools : MonoBehaviour
     }
     public float FindNextPosition()
     {
-        xOffset = Random.Range(3f, 5f);
+        xOffset = Random.Range(3.5f, 5.5f);
         currPosition = currPosition + xOffset;
         return currPosition;
     }
