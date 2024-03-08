@@ -8,25 +8,22 @@ public class PlayerPools : MonoBehaviour
     [SerializeField] private Transform prefab1Posi;
     [SerializeField] private Transform prefab2Posi;
     [SerializeField] private Transform prefab3Posi;
-    private Vector3 posiToSpawnBuilding;
+    private float posiToSpawnNextBuilding;
     private float xOffset;
 
     private void Start()
     {
-        //SpawnBuilding(prefab1Posi.position, 0f);
-        //SpawnBuilding(prefab2Posi.position, 0f);
-        //SpawnBuilding(prefab3Posi.position, 0f);
         SpawnStartingBuilding();
         SpawnStartingBuilding();
         SpawnStartingBuilding();
-        posiToSpawnBuilding = prefab3Posi.position;
+        posiToSpawnNextBuilding = prefab3Posi.position.x;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnBuilding(Vector3.zero,FindNextPosition());
+            SpawnBuilding(Vector3.zero, FindXOffset());
         }
     }
     public void SpawnStartingBuilding()
@@ -57,10 +54,8 @@ public class PlayerPools : MonoBehaviour
             }
         }
     }
-    public float FindNextPosition()
+    public float FindXOffset()
     {
-        //posiToSpawnBuilding = new Vector3(Random.Range(3.5f,5f),0f,0f);
-        // return posiToSpawnBuilding;
         xOffset = Random.Range(3.5f, 5f);
         return xOffset;
     }
