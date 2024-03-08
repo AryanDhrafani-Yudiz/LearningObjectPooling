@@ -53,7 +53,7 @@ public class PlayerPools : MonoBehaviour
     }
     public float FindNextPosition()
     {
-        xOffset = Random.Range(3.5f, 5f);
+        xOffset = Random.Range(3f, 5f);
         currPosition = currPosition + xOffset;
         return currPosition;
     }
