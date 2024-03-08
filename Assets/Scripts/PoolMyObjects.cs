@@ -9,8 +9,7 @@ public class ObjectPooling : MonoBehaviour
     [SerializeField] private GameObject _prefab1;
     [SerializeField] private GameObject _prefab2;
     [SerializeField] private GameObject _prefab3;
-    private int getRandomItem;
-    private bool initialBuildings;
+    private int getRandomItem = 0;
 
     public List<GameObject> ListOfObjects;
 
@@ -45,14 +44,8 @@ public class ObjectPooling : MonoBehaviour
     {
         for (int i = 0; i < ListOfObjects.Count; i++)
         {
-            if (initialBuildings)
-            {
-                getRandomItem = 0;
-                getRandomItem++;
-                if (getRandomItem > 2) initialBuildings = false;
+            getRandomItem = Random.Range(0, ListOfObjects.Count);
 
-            }
-            else getRandomItem = Random.Range(0, ListOfObjects.Count);
             if (!ListOfObjects[getRandomItem].activeInHierarchy)
             {
                 return ListOfObjects[getRandomItem];
@@ -60,4 +53,17 @@ public class ObjectPooling : MonoBehaviour
         }
         return null;
     }
+    public GameObject ObjectToPoolStarting()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+
+            if (!ListOfObjects[i].activeInHierarchy)
+            {
+                return ListOfObjects[i];
+            }
+        }
+        return null;
+    }
+
 }
