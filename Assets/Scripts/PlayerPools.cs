@@ -11,9 +11,9 @@ public class PlayerPools : MonoBehaviour
 
     private void Start()
     {
-        SpawnBuilding(prefab1Posi.position);
-        SpawnBuilding(prefab2Posi.position);
-        SpawnBuilding(prefab3Posi.position);
+        SpawnBuilding(Vector3.zero);
+        SpawnBuilding(Vector3.zero);
+        SpawnBuilding(Vector3.zero);
         posiToSpawnBuilding = prefab3Posi.position;
     }
 
@@ -32,15 +32,15 @@ public class PlayerPools : MonoBehaviour
 
             if (Building != null)
             {
+                Building.transform.position += position;
                 Building.SetActive(true);
-                Building.transform.position = position;
                 break;
             }
         }
     }
     public Vector3 FindNextPosition()
     {
-       posiToSpawnBuilding = new Vector3(posiToSpawnBuilding.x + Random.Range(3.5f,7f),posiToSpawnBuilding.y,posiToSpawnBuilding.z);
+       posiToSpawnBuilding = new Vector3(Random.Range(3.5f,5f),0f,0f);
         return posiToSpawnBuilding;
     }
 }
