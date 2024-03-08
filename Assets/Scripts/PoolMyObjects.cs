@@ -18,7 +18,6 @@ public class ObjectPooling : MonoBehaviour
         Inst = this;
         CreateObjects();
     }
-
     public void CreateObjects()
     {
         ListOfObjects = new();
@@ -39,7 +38,6 @@ public class ObjectPooling : MonoBehaviour
             ListOfObjects.Add(tmp);
         }
     }
-
     public GameObject ObjectToPool()
     {
         for (int i = 0; i < ListOfObjects.Count; i++)
@@ -65,5 +63,4 @@ public class ObjectPooling : MonoBehaviour
         }
         return null;
     }
-
 }

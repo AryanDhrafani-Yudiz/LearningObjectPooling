@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerPools : MonoBehaviour
 {
     [SerializeField] private Transform prefab1Posi;
     [SerializeField] private Transform prefab2Posi;
     [SerializeField] private Transform prefab3Posi;
-    private float posiToSpawnNextBuilding;
     private float xOffset;
     private float currPosition;
 
@@ -17,7 +13,7 @@ public class PlayerPools : MonoBehaviour
         SpawnStartingBuilding();
         SpawnStartingBuilding();
         SpawnStartingBuilding();
-        posiToSpawnNextBuilding = prefab3Posi.position.x;
+        currPosition = prefab3Posi.position.x;
     }
 
     void Update()
@@ -58,7 +54,7 @@ public class PlayerPools : MonoBehaviour
     public float FindNextPosition()
     {
         xOffset = Random.Range(3.5f, 5f);
-        //currPosition = ;
-        return posiToSpawnNextBuilding + xOffset;
+        currPosition = currPosition + xOffset;
+        return currPosition;
     }
 }
