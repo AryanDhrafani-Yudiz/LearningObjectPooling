@@ -10,6 +10,7 @@ public class PlayerPools : MonoBehaviour
     [SerializeField] private Transform prefab3Posi;
     private float posiToSpawnNextBuilding;
     private float xOffset;
+    private float currPosition;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class PlayerPools : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnBuilding(Vector3.zero, FindXOffset());
+            SpawnBuilding(FindNextPosition());
         }
     }
     public void SpawnStartingBuilding()
@@ -34,13 +35,13 @@ public class PlayerPools : MonoBehaviour
 
             if (Building != null)
             {
-                //Building.transform.position = new Vector3;
                 Building.SetActive(true);
                 break;
             }
         }
     }
-    public void SpawnBuilding(Vector3 position,float xoffset)
+
+    public void SpawnBuilding(float position1)
     {
         for (int i = 0; i < 5; i++)
         {
@@ -48,15 +49,16 @@ public class PlayerPools : MonoBehaviour
 
             if (Building != null)
             {
-                Building.transform.position = new Vector3(position.x + xOffset,position.y,position.z);
+                Building.transform.position = new Vector3(position1 , Building.transform.position.y , Building.transform.position.z);
                 Building.SetActive(true);
                 break;
             }
         }
     }
-    public float FindXOffset()
+    public float FindNextPosition()
     {
         xOffset = Random.Range(3.5f, 5f);
-        return xOffset;
+        //currPosition = ;
+        return posiToSpawnNextBuilding + xOffset;
     }
 }
